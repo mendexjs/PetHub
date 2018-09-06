@@ -1,0 +1,42 @@
+<div class="container containerPets">
+
+  <div class="row labelMyPets"> <h1>Seus Pets</h1></div>
+  <hr>
+
+  <div class="row controlMyPets">
+    <button class="btn btn-success col-8" [routerLink]="['/petmatch/add']"> Adicionar Pet</button>
+    <button *ngIf="delete==0" class="btn btn-danger col-4" (click)="deleteVisible()">Excluir Pet</button>
+    <button *ngIf="delete==1" class="btn btn-outline-info col-4" (click)="deleteInvisible()">Concluir</button>
+  </div>
+
+  <div class="containerFotos row">
+    <div class="card col-xl-4 col-lg-6 col-md-6 col-sm-12  img-pet" *ngFor="let pet of pets"  [routerLink]="['/petmatch/details-pet/' + pet.id]">
+        <i class="fas fa-trash-alt deletar" *ngIf="delete==1" (click)="open(content, pet.id, pet.nome_pet)"></i>
+        <img class="corte" src="http://localhost:8000/imagem/{{pet.imagem}}">
+        <span class="nomePet">{{ pet.nome_pet }}</span>
+    </div>
+  </div>
+
+  <!-- ghost -->
+  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Excluir!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="this.modalService.dismissAll()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Você tem certeza que quer deletar: {{deletarPetNome}}?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="this.modalService.dismissAll()">Cancelar</button>
+    <button class="btn btn-success" (click)="deletar(deletarPet)">Confirmar</button>
+  </div>
+</ng-template>
+<link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius|Handlee" rel="stylesheet">

@@ -1,0 +1,60 @@
+<div class="row conteudo">
+    <div class="col-8 perfil">
+
+        <div class="container cardPerfil">
+            <div class="row">
+                <div class="col-12">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="http://localhost:8000/imagem/users/user.jpg" class="img-rounded img-responsive fotoPerfil" />
+                            </div>
+                            <div class="col-9 dadosPerfil">
+                                <i class="fas fa-power-off fa-2x sair" ngbTooltip="Sair" placement="right" (click)="sair()"></i>
+                                <h4> {{ user['nome_user'] }}<span placement="right" ngbTooltip="Sua nota de avaliação"><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i><i class="far fa-star star"></i></span></h4>
+                                <small><cite>Bragança Paulista, SP &nbsp;<i class="fas fa-map-marker-alt">
+                                </i></cite></small>
+                                <p>
+                                    <i class="fas fa-envelope"></i> {{ user['email']}}
+                                    <br />
+                                    <span *ngIf="user['comercial']==0"><i class="fas fa-user"></i> Usuário Normal</span>
+                                    <span *ngIf="user['comercial']==1"><i class="fas fa-user-tie"></i> Usuário Comercial</span>
+                                    <br />
+                                    <i class="fas fa-sync-alt"></i> Atualizado em: {{user['updated_at']}}</p>
+                                <div class="col">
+                                    <div ngbDropdown class="d-inline-block"  ngbTooltip="Atualize seus dados">
+                                        <button class="btn btn-outline-dark" id="dropdownEditar" ngbDropdownToggle ><i class="fas fa-pen"></i> Editar</button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownEditar">
+                                            <button class="dropdown-item">Atualizar perfil</button>
+                                            <button class="dropdown-item">Trocar foto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="myPets">
+            <app-my-pets></app-my-pets>
+        </div>
+    </div>
+    <div class="col-4 lateral-nav">
+        <div class="col-12 petmatch" [routerLink]="['/petmatch']">
+            <div class="headerCard"><i class="fas fa-hand-holding-heart fa-4x iconesCard"></i> <span class="tituloCard"> #PetMatch</span></div>
+            <p class="descricao"> Busque por adoção de Pets por perto de você!</p>
+        </div>
+        <div class="col-12 petcare" [routerLink]="['#']">
+            <div class="headerCard"><i class="fas fa-paw fa-4x iconesCard"></i><span class="tituloCard"> #PetCare</span></div>
+            <p class="descricao"> Uma sessão de dicas e guias para te ajudar a cuidar melhor do seu amigo!</p>
+        </div>
+        <div class="col-12 petmaps" [routerLink]="['#']">
+            <div class="headerCard"><i class="fas fa-map-signs fa-4x iconesCard"></i><span class="tituloCard"> #PetMaps</span></div>
+            <p class="descricao"> Um mapa completo para te ajudar a encontrar clínicas, petshops e muito mais!</p>
+        </div>
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">

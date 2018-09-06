@@ -1,0 +1,92 @@
+<div class="row" style="margin-top: 100px;">
+
+    <div class="col-12 header" id="header">
+        <i class="fas fa-home fa-3x voltarSeta" [routerLink]="['/home']"></i>
+        <h1> Pet Match</h1>
+        <button class="btn btn-danger col-sm-3 col-md-2 col-12" (click)="logout()">Sair</button>
+        <button class="btn btn-success col-sm-4 col-md-3 col-12" id="btnAdd" [routerLink]="['add']">Adicionar um Pet</button>
+    </div>
+    <div class="col-12 header" id="header-hor">
+        <button class="btn btn-success col-12" id="btnAdd" [routerLink]="['add']">Adicionar um Pet</button>
+    </div>
+    <div class="row col-12" id="containerMini" style="margin-bottom: 10px;">
+    <div class=" col-xl-3 col-lg-4 col-md-5 col-sm-6  col-11 img-pet">
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Filtrar busca</th>
+                </tr>
+            </thead>
+            <br><br>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="col-12">
+                            Pet
+                            <select   [(ngModel)]="tipo" (change)="filtro()">
+                                <option value="0">Todos</option>
+                                <option value="1">Cães</option>
+                                <option value="2">Gatos</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-12">
+                            Castrados
+                            <select   [(ngModel)]="castrado" (change)="filtro()">
+                                <option value="0">Todos</option>
+                                <option value="1">Sim</option>
+                                <option value="2">Não</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="col-12">
+                            Porte
+                            <select [(ngModel)]="porte" (change)="filtro()">
+                                <option value="0">Todos</option>
+                                <option value="1">Pequeno</option>
+                                <option value="2">Medio</option>
+                                <option value="3">Grande</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="col-12">
+                            Pelagem
+                            <select [(ngModel)]="pelagem" (change)="filtro()">
+                                <option value="0">Todos</option>
+                                <option value="1">Curto</option>
+                                <option value="2">Longo </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+
+        <div class="card col-xl-3 col-lg-4 col-md-5 col-sm-6  img-pet" *ngFor="let pet of pets"  [routerLink]="['details-pet/' + pet.id]">
+            <div class="card-body">
+                <img class="corte" src="http://localhost:8000/imagem/{{pet.imagem}}">
+                <h3>{{ pet.nome_pet }}</h3>
+            </div>
+        </div>
+
+     <!-- ghost -->
+    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">

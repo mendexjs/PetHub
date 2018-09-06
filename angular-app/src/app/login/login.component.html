@@ -1,0 +1,181 @@
+
+    <div class="row">
+        <div class="col-12 header col-xl-12">
+            <a pageScroll href="#main" id="cadastro" class="btn">Cadastro</a>
+            <a href="#" id="entrar" (click)="popupLogin=true" class="btn">Entrar</a>
+        </div>
+        <div class="col-12 col-md-10" *ngIf="popupLogin" style="margin: 0 auto;">
+            <div class="popUp col-11 col-sm-8 col-md-5 col-lg-4 col-xl-4" >
+                <div class="modal-header">
+                    <h2 id="fechar" (click)="popupLogin=false">X</h2>
+                    <h5 class="modal-title">Entrar: </h5>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="loginForm" novalidate (ngSubmit)="loginSubmit()">
+                        <input type="text" id="email-login" class="form-control" placeholder="Seu email" formControlName="email" required>
+                        <input type="password" id="senha_login" class="form-control" placeholder="Senha de acesso" required formControlName="password">
+                        <button type="submit" [disabled]="loginForm.invalid || loginForm.pristine || loading" class="btn btn-success">Logar!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="popUp col-9" *ngIf="popup">
+            <div class="modal-header">
+                <h5 class="modal-title">PetHub!</h5>
+            </div>
+            <div class="modal-body">
+                <p>{{msgPop}}</p>
+                <button (click)="popup=false" class="btn btn-success">OK!</button>
+            </div>
+        </div>
+
+    <div class="sidenav col-12 col-md-7 col-lg-7 col-xl-7">
+        <div class="col-md-10 logo">
+            <img class="col-6" src="../../assets/icon.png">
+            <h1>Pet Hub</h1>
+        </div>
+
+        <div class="conteudo col-md-10">
+            <h3>Bem vindo à maior plataforma para dono de Pets!</h3><br>
+            <p>&nbsp;&nbsp;&nbsp;Deseja <i>doar</i> um animal de estimação, ou até mesmo <i>adotar</i> um? <br>
+                &nbsp;&nbsp;&nbsp;Procurando <i>dicas</i> de cuidados, ou <i>estabelecimentos</i> por perto?<br>
+            </p>
+            <p id="labelCadastro">Cadastre-se para obter acesso! &nbsp; <span id="setaA" style="font-size: 28px;">&#10144;</span><span id="setaB" style="font-size: 28px;">&#8681;</span></p>
+        </div>
+    </div>
+
+
+
+    <div class="main col-12 col-md-5 col-lg-5 col-xl-5" id="main">
+        <div class="col-11 formulario-div">
+            <h3>Abrir uma conta</h3><br>
+            <form [formGroup]="formulario" novalidate (ngSubmit)="onSubmit()">
+                <div class="form-group fdb" [ngClass]="aplicaCssErro('nome_user')">
+                    <input type="text" id="nome_user" class="form-control" placeholder="Nome"
+                           formControlName="nome_user">
+                    <div *ngIf="verificaValidTouched('nome_user')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Qual é o sem nome?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group fdb" [ngClass]="aplicaCssErro('email')">
+                    <input type="text" id="email" class="form-control" placeholder="Email "
+                           formControlName="email">
+                    <div *ngIf="verificaValidTouched('email')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Você precisará dele para se conectar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group fdb" [ngClass]="aplicaCssErro('senha')">
+                    <input type="password" id="senha" class="form-control" (input)="confirmaSenha()" placeholder="Nova senha"
+                           formControlName="senha">
+                    <div *ngIf="verificaValidTouched('senha')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Crie uma nova senha de no mínimo 6 caracteres.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group fdb" [ngClass]="aplicaCssErro('confirma_senha')">
+                    <input type="password" id="confirma_senha" class="form-control" placeholder="Repita sua nova senha"
+                           formControlName="confirma_senha" (input)="confirmaSenha()">
+                    <div *ngIf="verificaValidTouched('confirma_senha') || confirmaPass">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>As senhas não coincidem.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group fdb" [ngClass]="aplicaCssErro('localizacao')">
+                    <input type="texy" id="localizacao" class="form-control" placeholder="Digite sua cidade."
+                           formControlName="localizacao">
+                    <div *ngIf="verificaValidTouched('localizacao')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Informe a cidade em que reside.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-12" [ngClass]="aplicaCssErro('sexo')">
+                        <div class="fem col-12 col-md-6">
+                            <input type="radio" name="sexo" value="F" class="form-control" formControlName="sexo" id="fem">
+                            <label for="fem" id="lblFem">Feminino</label>
+                        </div>
+                        <div class="masc col-12 col-lg-6">
+                            <input type="radio" name="sexo" value="M" class="form-control" formControlName="sexo" id="masc">
+                            <label for="masc" id="lblMasc">Masculino</label>
+                        </div>
+                        <div  *ngIf="verificaValidTouched('sexo')">
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span class="sr-only">(error)</span>
+                            <div class="alert alert-danger errorDiv" role="alert">
+                                <p>Informe seu sexo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Data de Nascimento</label>
+                    <br>
+                    <div class="col-4 selects" [ngClass]="aplicaCssErro('dia_nasc')">
+                        <select id="dia_nasc" formControlName="dia_nasc" class="form-control">
+                            <option value="">Dia</option>
+                            <option value="1">1</option>
+                        </select>
+                        <div  *ngIf="verificaValidTouched('dia_nasc')">
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span class="sr-only">(error)</span>
+                            <div class="alert alert-danger errorDiv" role="alert">
+                                <p>Selecione o dia que nasceu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 selects" [ngClass]="aplicaCssErro('mes_nasc')">
+                        <select id="mes_nasc" formControlName="mes_nasc" class="form-control">
+                            <option value="">Mês</option>
+                            <option value="2">2</option>
+                        </select>
+                        <div  *ngIf="verificaValidTouched('mes_nasc')">
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span class="sr-only">(error)</span>
+                            <div class="alert alert-danger errorDiv" role="alert">
+                                <p>Selecione o mês que nasceu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 selects" [ngClass]="aplicaCssErro('ano_nasc')">
+                        <select id="ano_nasc" formControlName="ano_nasc" class="form-control">
+                            <option value="">Ano</option>
+                            <option value="12">2012</option>
+                        </select>
+                        <div  *ngIf="verificaValidTouched('ano_nasc')">
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span class="sr-only">(error)</span>
+                            <div class="alert alert-danger errorDiv" role="alert">
+                                <p>Selecione o ano que nasceu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12"> <button type="submit" [disabled]="formulario.invalid || formulario.pristine || loading || confirmaPass"  class="btn btn-success col-12" >Cadastre-se <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i></button></div>
+            </form>
+            <p id="membro"> Já é um membro? <span id="loginLabel" (click)="popupLogin=true">Faça login</span> </p>
+        </div>
+    </div>
+</div>
+<link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius|Handlee" rel="stylesheet">

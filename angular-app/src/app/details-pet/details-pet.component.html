@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="col-12 header">
+        <i class="fas fa-chevron-left fa-3x" [routerLink]="['../../']"></i>
+        <h1 id="petmatch">Pet Match: </h1>
+        <h4 id="addLabel">Detalhes: {{pet['nome_pet']}}</h4>
+    </div>
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class=" tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="http://localhost:8000/imagem/{{pet['imagem']}}"/></div>
+                    </div>
+
+
+                    <div class="informacoes-grande">
+                        <h5 class="sizes">CONTATO:
+                            <span class="size" data-toggle="tooltip" title="small">{{pet['tel_contato']}}</span>
+                        </h5>
+                        <h5 class="colors">Site:
+                            <span *ngIf="pet['site_contato'] != null" class="size" data-toggle="tooltip" title="small">{{pet['site_contato']}}</span>
+                            <span *ngIf="pet['site_contato'] == null" class="size" data-toggle="tooltip" title="small"> Não disponível</span>
+                        </h5>
+                        <h5 class="colors" *ngIf="pet['comercial'] == 1">
+                            <span class="color purple" data-toggle="tooltip" title="Este pet pertence a alguma ONG/Canil certificado."></span>Conta institucional
+                        </h5>
+                        <h5 class="colors" *ngIf="pet['comercial'] == 0">
+                            <span class="color blue" data-toggle="tooltip" title="Este pet pertence a um usuário comum da plataforma."></span>Conta de usuário
+                        </h5>
+                    </div>
+
+                </div>
+                <div class="details col-md-6">
+                    <strong id="id">ID: #{{ pet['id'] }}</strong>
+                    <h4 class="product-title"> {{pet['nome_pet'] }},<span style="font-size: 16px;"> {{ idade }} ano(s)</span></h4>
+
+                    <p class="product-description"> {{ pet['descricao'] }}</p>
+                    <br/>
+                    <div class="tabela-grande">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <p>Informações</p>
+                                <tr>
+                                    <th>Castrado</th>
+                                    <th>Pelagem</th>
+                                    <th>Sexo</th>
+                                    <th>Porte</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td *ngIf="pet['castrado'] ==0"> Não é castrado. </td>
+                                    <td *ngIf="pet['castrado'] ==1"> É castrado. </td>
+                                    <td> {{ pet['pelagem'] }} </td>
+                                    <td *ngIf="pet['sexo'] =='M'"> Macho</td>
+                                    <td *ngIf="pet['sexo'] =='F'"> Fêmea</td>
+                                    <td> {{ pet['porte'] }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tabela-breakpoint">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <p>Informações</p>
+                                <tr>
+                                    <th>Castrado</th>
+                                    <td *ngIf="pet['castrado'] ==0"> Não é castrado. </td>
+                                    <td *ngIf="pet['castrado'] ==1"> É castrado. </td>
+                                </tr>
+                            </thead>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Pelagem</th>
+                                    <td>{{ pet['pelagem']}}</td>
+                                </tr>
+                            </thead>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Sexo</th>
+                                    <td *ngIf="pet['sexo'] =='M'"> Macho</td>
+                                    <td *ngIf="pet['sexo'] =='F'"> Fêmea</td>
+                                </tr>
+                            </thead>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Porte</th>
+                                    <td> {{ pet['porte'] }} </td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="lista-info">
+                        <p>Informações: </p>
+                        <ul>
+                            <li *ngIf="pet['castrado'] ==0"> Não é castrado. </li>
+                            <li *ngIf="pet['castrado'] ==1"> É castrado. </li>
+                            <li>Pelagem: {{pet['pelagem']}}</li>
+                            <li>Sexo: {{pet['sexo']}}</li>
+                            <li>Porte: {{pet['porte']}}</li>
+                        </ul>
+                    </div>
+                    <div class="local">
+                        <h5 class="price">Localização: <span class="size"> {{ pet['endereco'] }} - {{ pet['cidade'] }}</span></h5>
+                        <p class="vote"> Responsável: {{pet['nome_user']}} <strong> {{ pet['nota_avaliacao']}} ****º</strong></p>
+                    </div>
+
+                    <div class="informacoes-mobile">
+                        <p class="sizes">CONTATO:
+                            <span  data-toggle="tooltip" title="Informações de Contato">{{pet['tel_contato']}}</span>
+                        </p>
+                        <p class="sizes">Site:
+                            <span *ngIf="pet['site_contato'] != null"  data-toggle="tooltip" title="Site para mais informações">{{pet['site_contato']}}</span>
+                            <span *ngIf="pet['site_contato'] == null"  data-toggle="tooltip" title="Site não informado"> Não disponível</span>
+                        </p>
+                        <p class="colors" *ngIf="pet['comercial'] == 1">
+                            <span class="color purple" data-toggle="tooltip" title="Este pet pertence a alguma ONG/Canil certificado."></span>Conta institucional
+                        </p>
+                        <p class="colors" *ngIf="pet['comercial'] == 0">
+                            <span class="color blue" data-toggle="tooltip" title="Este pet pertence a um usuário comum da plataforma."></span>Conta de usuário
+                        </p>
+                        <button [routerLink]="['../../']" class="btn btn-dark col-sm-12 col-md-3 btnVoltar"> < Voltar</button>
+                    </div>
+                </div>
+                <div class="local-md">
+                    <h5 class="price">Localização: <span class="size"> {{ pet['endereco'] }} - {{ pet['cidade'] }}</span></h5>
+                    <p class="vote"> Responsável: {{pet['nome_user']}} <strong> {{ pet['nota_avaliacao']}} ****º</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">

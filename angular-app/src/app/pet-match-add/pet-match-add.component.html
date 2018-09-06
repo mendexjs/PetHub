@@ -1,0 +1,209 @@
+<div class="row" style="margin-top: 90px;">
+    <div class="col-12 header">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fas fa-chevron-left voltarSeta" [routerLink]="['../']"></i>
+        <h1 id="petmatch">Pet Match: </h1>
+        <h4 id="addLabel">Adicionando Pet</h4>
+    </div>
+
+    <div class="col-10 container" style="margin: 0 auto">
+        <div class="popUp col-9" *ngIf="popup">
+            <div class="modal-header">
+                <h5 class="modal-title">PetHub!</h5>
+            </div>
+            <div class="modal-body">
+                <p>{{msgPop}}</p>
+                <button (click)="popup=false" class="btn btn-success">OK!</button>
+            </div>
+        </div>
+        <h2 id="labelForm">Preencha o formulario! </h2>
+        <hr>
+
+        <form [formGroup]="formulario" novalidate (ngSubmit)="onSubmit()" class="formUpload">
+            <div class="form-group fdb" [ngClass]="aplicaCssErroIm()">
+                <label for="file_name">Foto do Pet *</label>
+                <input type="file" id="file_name" class="form-control" (change)="handleFile($event)" #fileInput>
+                <div *ngIf="verificaValidFoto()">
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <span class="sr-only">(error)</span>
+                    <div class="alert alert-danger errorDiv" role="alert">
+                        <p>A imagem é obrigatória.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group fdb" [ngClass]="aplicaCssErro('nome_pet')">
+                <label for="nome_pet">Nome *</label>
+                <input type="text" id="nome_pet" class="form-control" placeholder="Ex: Brutus "
+                formControlName="nome_pet">
+                <div *ngIf="verificaValidTouched('nome_pet')">
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <span class="sr-only">(error)</span>
+                    <div class="alert alert-danger errorDiv" role="alert">
+                        <p>Nome do pet é obrigatório.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-4 col-sm-6 col-12 selects" [ngClass]="aplicaCssErro('porte')">
+                    <label for="porte">Porte *</label>
+                    <select id="porte" formControlName="porte" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="pequeno">Pequeno</option>
+                        <option value="medio">Médio</option>
+                        <option value="grande">Grande</option>
+                    </select>
+                    <div  *ngIf="verificaValidTouched('porte')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Selecione o porte do Pet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-12 selects" [ngClass]="aplicaCssErro('pelagem')">
+                    <label for="pelagem">Pelagem *</label>
+                    <select id="pelagem" formControlName="pelagem" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="curto">Curto</option>
+                        <option value="longo">Longo</option>
+                    </select>
+                    <div  *ngIf="verificaValidTouched('pelagem')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Selecione a pelagem do pet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-12 selects" [ngClass]="aplicaCssErro('castrado')">
+                    <label for="castrado">Castrado *</label>
+                    <select id="castrado" formControlName="castrado" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="1">Castrado</option>
+                        <option value="0">Não castrado</option>
+                    </select>
+                    <div  *ngIf="verificaValidTouched('castrado')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Infome se o pet é castrado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-12 selects" [ngClass]="aplicaCssErro('ano_nascimento')">
+                    <label for="ano_nascimento">Nascimento *</label>
+                    <select id="ano_nascimento" formControlName="ano_nascimento" class="form-control">
+                        <option value="">Selecione</option>
+                        <option *ngFor="let ano of years" value="{{ano.value}}">{{ ano.value }}</option>
+                    </select>
+                    <div  *ngIf="verificaValidTouched('ano_nascimento')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Que ano o Pet nasceu?</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 col-sm-6 col-12 selects" [ngClass]="aplicaCssErro('tipo')">
+                    <label for="tipo">Cão ou Gato? *</label>
+                    <select id="tipo" formControlName="tipo" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="cachorro">Cão</option>
+                        <option value="gato">Gato</option>
+                    </select>
+                    <div  *ngIf="verificaValidTouched('tipo')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Cão ou Gato ?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-12 selects" [ngClass]="aplicaCssErro('sexo')">
+                    <label for="sexo">Sexo *</label>
+                    <select id="sexo" formControlName="sexo" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="F">Fêmea</option>
+                        <option value="M">Macho</option>
+                    </select>
+                    <div  *ngIf="verificaValidTouched('sexo')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Informe o sexo do pet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group fdb" [ngClass]="aplicaCssErro('descricao')">
+                <label for="descricao">Descrição *</label><br>
+                <textarea id="descricao" class="form-control" rows="4" placeholder="Conte mais um pouco sobre o Pet, os usuários gostam de detalhes!" formControlName="descricao"></textarea>
+                <div *ngIf="verificaValidTouched('descricao')">
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <span class="sr-only">(error)</span>
+                    <div class="alert alert-danger errorDiv" role="alert">
+                        <p>Conte mais um pouco sobre o Pet, os usuários gostam de detalhes!</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-12 col-md-4 selects fdb" [ngClass]="aplicaCssErro('tel_contato')">
+                    <label for="telefone">Telefone *</label>
+                    <input type="text" id="telefone" formControlName="tel_contato" class="form-control" placeholder="Ex: 11 999999999">
+                    <div *ngIf="verificaValidTouched('tel_contato')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Insira seu telefone com DDD. (somente números)</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-md-8 selects fdb" [ngClass]="aplicaCssErro('site_contato')">
+                    <label for="site">(opcional) Site: </label>
+                    <input type="text" id="site" formControlName="site_contato" class="form-control" placeholder="Deixe em branco se não tiver.">
+                </div>
+            </div>
+            <hr>
+            <div class="form-group fdb">
+                <div class="col-12 col-md-6 selects" [ngClass]="aplicaCssErro('cidade')">
+                    <label for="cidade">Cidade *</label>
+                    <input type="text" id="cidade" formControlName="cidade" class="form-control" placeholder="Ex: São Paulo">
+                    <div *ngIf="verificaValidTouched('cidade')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Digite sua cidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 selects fdb" [ngClass]="aplicaCssErro('endereco')">
+                    <label for="endereco"> Bairro *</label>
+                    <input type="text" id="endereco" formControlName="endereco" class="form-control" placeholder="Ex: ">
+                    <div *ngIf="verificaValidTouched('endereco')">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span class="sr-only">(error)</span>
+                        <div class="alert alert-danger errorDiv" role="alert">
+                            <p>Informe seu bairro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12"> <button type="submit" [disabled]="formulario.invalid || formulario.pristine || loading"  class="btn btn-success col-sm-12 col-md-3" >Cadastrar <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loading"></i></button><button (click)="voltar()" class="btn btn-dark col-sm-12 col-md-3"> < Voltar</button></div>
+        </form>
+    </div>
+</div>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius|Handlee" rel="stylesheet">

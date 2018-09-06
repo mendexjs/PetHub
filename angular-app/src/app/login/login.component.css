@@ -1,0 +1,198 @@
+.sidenav{
+    background-color: #071d0c;
+    padding-top: 50px;
+    padding-bottom: 160px;
+}
+.logo{
+    margin: 0 auto;
+}
+
+
+
+.logo h1{
+    font-family: 'Annie Use Your Telescope', cursive;
+    color: white;
+    display: inline;
+    font-size: 60px;
+    padding-left: 20px;
+}
+.conteudo h3{
+    font-family: 'Handlee', cursive;
+    font-size: 25px;
+    text-align: center;
+    color: #2bb34a;
+}
+.conteudo{
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.conteudo p{
+    font-family: 'Delius', cursive;
+    font-size: 16px;
+    color: white;
+}
+#labelCadastro{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 50px;
+}
+i{
+    color: #2bb34a;
+}
+.main{
+    padding-top: 30px;
+    background-color: white;
+}
+
+.errorDiv {
+    margin-bottom: 0px;
+}
+
+.fdb .ng-valid {
+    border-left: 5px solid #42A948; /* green */
+}
+.selects {
+    display:inline-grid;
+}
+#fem, #masc{
+    width:15px;
+    display: inline;
+    box-shadow: 0 0 0 0, 0 0 0 0;
+}
+.fem, .masc{
+    display: inline-block;
+    margin: 0 auto;
+}
+#lblMasc, #lblFem{
+    font-size: 22px;
+    position: absolute;
+    padding-left: 10px;
+}
+
+input, select, textarea{
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 1px 3px 0 rgba(0,0,0,0.19);
+}
+.popUp{
+    position: fixed;
+    border-radius: 8px;
+    background-color: #1a3219;
+    z-index: 200;
+    top: 25%;
+    color: #fff;
+    padding: 15px;
+}
+.header {
+    /* padding: 15px 20px 15px 20px; */
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.19);
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    left: 0;
+    background-color: #fff;
+}
+#setaB{
+    display: none;
+}
+.header{
+    display: none;
+}
+#entrar{
+    float: right;
+    font-size: 22px;
+    padding: 3px 20px 8px 20px;
+}
+#cadastro{
+    float: left;
+    font-size: 22px;
+    padding: 3px 20px 8px 20px;
+}
+.popUp{
+    position: fixed;
+    border-radius: 8px;
+    border: 2px solid #2ec95c;
+    background-color: #fff;
+    z-index: 200;
+    top: 20%;
+    color: #000;
+    padding: 15px;
+}
+.popUp button{
+    width: 80px;
+}
+#fechar{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right:20px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .popUp{
+        width: 300px;
+        right: 0;
+        margin-right: 5%;
+    }
+
+}
+@media screen and (min-width: 1024px) {
+    .popUp{
+        width: 400px;
+        right: 0;
+        margin-right: 11%;
+    }
+}
+@media screen and (min-width: 1400px) {
+    .popUp{
+        width: 400px;
+        right: 0;
+        margin-right: 15%;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 767px){
+    .popUp{
+        width: 400px;
+        left: calc(50% - 200px);
+    }
+
+}
+
+@media screen and (max-width: 768px){
+    #setaB{
+        display: block;
+    }
+    #setaA{
+        display: none;
+    }
+    .main{
+        padding-top: 100px;
+    }
+    .header{
+        display: block;
+    }
+    .row{
+        margin-top: 20px;
+    }
+
+}
+@media screen and (max-width: 991px){
+    .logo h1{
+        font-size: 40px;
+    }
+}
+.popUp button{
+    width: 80px;
+}
+.formulario-div{
+    margin: 0 auto;
+}
+#membro{
+    text-align: center;
+    padding-top: 25px;
+}
+#loginLabel{
+    cursor: pointer;
+
+    color: #007bff;
+}
+

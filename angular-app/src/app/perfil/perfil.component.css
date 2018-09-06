@@ -1,0 +1,84 @@
+.perfil{
+    height: 800px;
+    padding: 10px;
+}
+.perfil{
+    background-color: #eeeeee;
+}
+.lateral-nav{
+    background-color: #e5e5e5;
+    position: fixed;
+    right: 20px;
+    padding: 10px;
+}
+.petmatch, .petcare, .petmaps{
+    height: 190px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4), 0 2px 10px 0 rgba(0,0,0,0.28);
+}
+.petmatch{
+    background-color: #149a45;
+}
+.petcare{
+    background-color: #0c8e9e;
+}
+.petmaps{
+    background-color: #6313ca;
+}
+
+.fotoPerfil{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.19);
+}
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+}
+.star{
+    color: #c8a400;
+}
+small{
+    font-size: 14px;
+}
+.dadosPerfil{
+    padding-left: 30px;
+}
+.cardPerfil{
+    padding: 8px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.19);
+}
+.iconesCard{
+    color: #eeeeee;
+}
+.tituloCard{
+    color: #eeeeee;
+    font-size: 28px;
+}
+.headerCard{
+    padding: 30px;
+}
+.descricao{
+    color: #fff;
+    font-style: italic;
+    font-size: 18px;
+
+}
+.myPets{
+    padding: 10px;
+}
+.sair{
+    position: absolute;
+    right: 15px;
+    color: #c13b18;
+    cursor: pointer;
+}

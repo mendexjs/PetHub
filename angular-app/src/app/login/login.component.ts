@@ -10,7 +10,7 @@ import {timer} from "rxjs/internal/observable/timer";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  serverUrl = "http://http://54.233.88.185";
   popupLogin=false;
   popup=false;
   msgPop: String;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
       //checando se está autenticado
-        this.http.get<any>("http://localhost:8000/api/auth/check/?token=" + localStorage.getItem('token'))
+        this.http.get<any>(this.serverUrl+"/api/auth/check/?token=" + localStorage.getItem('token'))
             .subscribe(data=> {
                 this.router.navigate(['/home'])
             }, e =>{
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     loginSubmit(){
 
         this.loading = true;
-        this.http.post('http://localhost:8000/api/auth/login', {
+        this.http.post(this.serverUrl+'/api/auth/login', {
             "email": this.loginForm.get('email').value,
             "password": this.loginForm.get('password').value
         })
@@ -77,14 +77,14 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         const formModel = this.prepareSave();
         //this.criarForm(form);
-        this.http.post('http://localhost:8000/api/user', formModel)
+        this.http.post(this.serverUrl+'/api/user', formModel)
             .subscribe(data => {
                 this.loading = false;
                 if(data['status'] == 424){
                     this.popUp("Preencha o formulario corretamente");
                 }else{
                     this.popUp("Cadastrado efetuado com Sucesso!");
-                    this.http.post('http://localhost:8000/api/auth/login', {
+                    this.http.post(this.serverUrl+'/api/auth/login', {
                         "email": this.formulario.get('email').value,
                         "password": this.formulario.get('senha').value})
                         .subscribe(data => {

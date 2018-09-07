@@ -11,7 +11,7 @@ import {Subscription, timer} from "rxjs/index";
   styleUrls: ['./pet-match-add.component.css']
 })
 export class PetMatchAddComponent implements OnInit,OnDestroy {
-
+  serverUrl = "http://http://54.233.88.185";
   year= new Date().getFullYear();
   range= [];
   years=[];
@@ -43,7 +43,7 @@ export class PetMatchAddComponent implements OnInit,OnDestroy {
 
       let tempo = timer(5000,60000);
       this.subscription = tempo.subscribe(data => {
-          this.http.get<any>("http://localhost:8000/api/auth/refresh/?token=" + localStorage.getItem('token'))
+          this.http.get<any>(this.serverUrl+"/api/auth/refresh/?token=" + localStorage.getItem('token'))
               .subscribe(data=> {
                   localStorage.setItem('token', data['newToken']);
               }, e =>{
@@ -78,7 +78,7 @@ export class PetMatchAddComponent implements OnInit,OnDestroy {
         this.loading = true;
         const formModel = this.prepareSave();
         //this.criarForm(form);
-        if (this.http.post('http://localhost:8000/api/doacao?token=' + localStorage.getItem('token'), formModel)
+        if (this.http.post(this.serverUrl+'/api/doacao?token=' + localStorage.getItem('token'), formModel)
             .subscribe(data => {
                 this.loading = false;
                 if (data['status'] == 424) {

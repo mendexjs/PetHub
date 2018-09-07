@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./pet-match.component.css']
 })
 export class PetMatchComponent implements OnInit,OnDestroy {
-
+  serverUrl = "http://http://54.233.88.185";
   pets= [];
   pelagem="0";
   porte="0";
@@ -23,20 +23,20 @@ export class PetMatchComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
       //verificando autenticação
-      this.http.get<any>("http://localhost:8000/api/auth/check/?token=" + localStorage.getItem('token'))
+      this.http.get<any>(this.serverUrl+"/api/auth/check/?token=" + localStorage.getItem('token'))
           .subscribe(data=> {
               return true;
           }, e =>{
               return this.router.navigate(['/']);
           });
 
-      this.http.get<any>("http://localhost:8000/api/busca/doacao/Braganca")
+      this.http.get<any>(this.serverUrl+"/api/busca/doacao/Braganca")
           .subscribe(data=>this.pets = data);
 
 
       let tempo = timer(5000,60000);
       this.subscription = tempo.subscribe(data => {
-          this.http.get<any>("http://localhost:8000/api/auth/refresh/?token=" + localStorage.getItem('token'))
+          this.http.get<any>(this.serverUrl+"/api/auth/refresh/?token=" + localStorage.getItem('token'))
               .subscribe(data=> {
                   localStorage.setItem('token', data['newToken']);
               }, e =>{
@@ -54,7 +54,7 @@ export class PetMatchComponent implements OnInit,OnDestroy {
   }
 
   filtro(){
-      this.http.get<any>("http://localhost:8000/api/busca/doacao/Braganca/"+ this.porte + "/"  + this.pelagem + "/" + this.castrado + "/" + this.tipo)
+      this.http.get<any>(this.serverUrl+"/api/busca/doacao/Braganca/"+ this.porte + "/"  + this.pelagem + "/" + this.castrado + "/" + this.tipo)
           .subscribe(data=>this.pets = data)
   }
 

@@ -10,6 +10,7 @@ import {Subscription, timer} from "rxjs/index";
 })
 export class DetailsPetComponent implements OnInit,OnDestroy {
 
+    serverUrl = "http://http://54.233.88.185";
     id = null;
     pet= [];
     year= new Date().getFullYear();
@@ -25,14 +26,14 @@ export class DetailsPetComponent implements OnInit,OnDestroy {
           this.router.navigate(['/']);
       }
 
-      this.http.get<any>("http://localhost:8000/api/doacao/" + this.id)
+      this.http.get<any>(this.serverUrl+"/api/doacao/" + this.id)
           .subscribe(data=> {
               this.pet = data[0];
               this.idade= this.year - data[0].ano_nascimento;
           });
       let tempo = timer(5000,60000);
       this.subscription = tempo.subscribe(data => {
-          this.http.get<any>("http://localhost:8000/api/auth/refresh/?token=" + localStorage.getItem('token'))
+          this.http.get<any>(this.serverUrl+"/api/auth/refresh/?token=" + localStorage.getItem('token'))
               .subscribe(data=> {
                   localStorage.setItem('token', data['newToken']);
               }, e =>{

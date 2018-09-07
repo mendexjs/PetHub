@@ -12,7 +12,7 @@
   <div class="containerFotos row">
     <div class="card col-xl-4 col-lg-6 col-md-6 col-sm-12  img-pet" *ngFor="let pet of pets"  [routerLink]="['/petmatch/details-pet/' + pet.id]">
         <i class="fas fa-trash-alt deletar" *ngIf="delete==1" (click)="open(content, pet.id, pet.nome_pet)"></i>
-        <img class="corte" src="http://localhost:8000/imagem/{{pet.imagem}}">
+        <img class="corte" src={{serverUrl}}"/imagem/{{pet.imagem}}">
         <span class="nomePet">{{ pet.nome_pet }}</span>
     </div>
   </div>

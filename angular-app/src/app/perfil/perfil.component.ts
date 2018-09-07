@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit, OnDestroy {
+    serverUrl = "http://http://54.233.88.185";
     id=null;
     user= [];
     private subscription: Subscription;
@@ -20,7 +21,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
       //verificando autenticação
-      this.http.get<any>("http://localhost:8000/api/auth/check/?token=" + localStorage.getItem('token'))
+      this.http.get<any>(this.serverUrl+"/api/auth/check/?token=" + localStorage.getItem('token'))
           .subscribe(data=> {
               true;
           }, e =>{
@@ -28,13 +29,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
           });
       // seu perfil
       if(this.id != null){
-          this.http.get<any>("http://localhost:8000/api/perfil/" + this.id)
+          this.http.get<any>(this.serverUrl+"/api/perfil/" + this.id)
               .subscribe(data=> {
                   this.user = data[0];
               });
       }else{ //perfil de outro usuario
 
-            this.http.get<any>("http://localhost:8000/api/perfil?token=" + localStorage.getItem('token'))
+            this.http.get<any>(this.serverUrl+"/api/perfil?token=" + localStorage.getItem('token'))
                 .subscribe(data => {
                     this.user = data[0];
                 }, e =>{
@@ -43,7 +44,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
       }
       let tempo = timer(5000,60000);
       this.subscription = tempo.subscribe(data => {
-          this.http.get<any>("http://localhost:8000/api/auth/refresh/?token=" + localStorage.getItem('token'))
+          this.http.get<any>(this.serverUrl+"/api/auth/refresh/?token=" + localStorage.getItem('token'))
               .subscribe(data=> {
                   localStorage.setItem('token', data['newToken']);
               }, e =>{

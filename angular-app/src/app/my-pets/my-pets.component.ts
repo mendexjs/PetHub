@@ -13,6 +13,7 @@ import {timer} from "rxjs";
 })
 
 export class MyPetsComponent implements OnInit {
+    serverUrl = "http://http://54.233.88.185";
     pets= [];
     delete = 0;
     deletarPet = null;
@@ -20,7 +21,7 @@ export class MyPetsComponent implements OnInit {
   constructor(private http: HttpClient,private router: Router, public modalService: NgbModal) { }
 
   ngOnInit() {
-      this.http.get<any>("http://localhost:8000/api/perfil/doacao?token=" + localStorage.getItem('token'))
+      this.http.get<any>(this.serverUrl+"/api/perfil/doacao?token=" + localStorage.getItem('token'))
           .subscribe(data=>{
               this.pets = data;
           });
@@ -43,11 +44,11 @@ export class MyPetsComponent implements OnInit {
   }
 
   deletar(idPet){
-      this.http.delete<any>("http://localhost:8000/api/doacao/"+idPet+"/?token=" + localStorage.getItem('token'))
+      this.http.delete<any>(this.serverUrl+"/api/doacao/"+idPet+"/?token=" + localStorage.getItem('token'))
           .subscribe( data => {
               this.ngOnInit();
           }
-          );
+      );
   }
 
 }

@@ -78,7 +78,7 @@
 
         <div class="card col-xl-3 col-lg-4 col-md-5 col-sm-6  img-pet" *ngFor="let pet of pets"  [routerLink]="['details-pet/' + pet.id]">
             <div class="card-body">
-                <img class="corte" src={{serverUrl}}"/imagem/{{pet.imagem}}">
+                <img class="corte" src="{{serverUrl}}/imagem/{{pet.imagem}}">
                 <h3>{{ pet.nome_pet }}</h3>
             </div>
         </div>

@@ -11,7 +11,7 @@ import {Subscription, timer} from "rxjs/index";
   styleUrls: ['./pet-match-add.component.css']
 })
 export class PetMatchAddComponent implements OnInit,OnDestroy {
-  serverUrl = "http://http://54.233.88.185";
+  serverUrl = "http://54.233.88.185";
   year= new Date().getFullYear();
   range= [];
   years=[];

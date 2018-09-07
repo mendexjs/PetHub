@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit, OnDestroy {
-    serverUrl = "http://http://54.233.88.185";
+    serverUrl = "http://54.233.88.185";
     id=null;
     user= [];
     private subscription: Subscription;

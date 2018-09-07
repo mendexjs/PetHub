@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./pet-match.component.css']
 })
 export class PetMatchComponent implements OnInit,OnDestroy {
-  serverUrl = "http://http://54.233.88.185";
+  serverUrl = "http://54.233.88.185";
   pets= [];
   pelagem="0";
   porte="0";

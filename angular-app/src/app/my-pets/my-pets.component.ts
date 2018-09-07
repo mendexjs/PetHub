@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import {Router} from "@angular/router";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {timer} from "rxjs";
-
 
 
 @Component({
@@ -13,7 +11,7 @@ import {timer} from "rxjs";
 })
 
 export class MyPetsComponent implements OnInit {
-    serverUrl = "http://http://54.233.88.185";
+    serverUrl = "http://54.233.88.185";
     pets= [];
     delete = 0;
     deletarPet = null;

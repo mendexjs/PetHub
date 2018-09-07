@@ -10,7 +10,7 @@ import {Subscription, timer} from "rxjs/index";
 })
 export class DetailsPetComponent implements OnInit,OnDestroy {
 
-    serverUrl = "http://http://54.233.88.185";
+    serverUrl = "http://54.233.88.185";
     id = null;
     pet= [];
     year= new Date().getFullYear();

@@ -27,7 +27,7 @@ class UserController extends Controller
     public function perfil(){
         $token = JWTAuth::getToken();
         $apy = JWTAuth::getPayload($token)->toArray();
-        $retorno =  User::select('nome_user', 'nota_avaliacao','email', 'comercial','sexo','updated_at', 'localizacao')
+        $retorno =  User::select('nome_user', 'nota_avaliacao','email', 'comercial','sexo','updated_at','imagem', 'localizacao')
             ->where(['id' => $apy['sub']])
             ->get();
 
@@ -39,8 +39,9 @@ class UserController extends Controller
     }
 
     public function show($id){
-        return User::select('nome_user', 'nota_avaliacao', 'comercial', 'sexo')->where(['id' => $id])->get();
+        return User::select('nome_user', 'nota_avaliacao', 'comercial','imagem', 'sexo')->where(['id' => $id])->get();
     }
+
     public function photoUrl($photoName){
         $photoPath= storage_path("app/users/{$photoName}");
         return response()->download($photoPath);

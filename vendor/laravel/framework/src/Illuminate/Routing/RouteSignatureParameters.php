@@ -5,7 +5,6 @@ namespace Illuminate\Routing;
 use ReflectionMethod;
 use ReflectionFunction;
 use Illuminate\Support\Str;
-use app\Http\Requests\AuthenticateRequest;
 
 class RouteSignatureParameters
 {

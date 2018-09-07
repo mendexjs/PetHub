@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 // Métodos Padão API
 Route::resource('doacao', 'DoacaoController');
 Route::resource('user', 'UserController');
-
+// Métodos autenticação
 Route::post('auth/login', 'AuthController@authenticate');
 Route::get('auth/check', 'UserController@checkAuth');
 Route::get('auth/refresh', 'UserController@refreshToken');
@@ -26,5 +26,7 @@ Route::get('auth/refresh', 'UserController@refreshToken');
 Route::get('busca/doacao/{cidade}/{porte?}/{pelagem?}/{castrado?}/{tipo?}', "DoacaoController@filtro");
 // Busca todas doações cadastradas para este usuário
 Route::get("perfil/doacao", "DoacaoController@perfilDoacao");
+// Dados do perfil
 Route::get("perfil", "UserController@perfil");
+// Dados de perfil por id
 Route::get("perfil/{id}", "UserController@show");

@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription, timer} from "rxjs/index";
 
 
+
 @Component({
   selector: 'app-pet-match-add',
   templateUrl: './pet-match-add.component.html',
@@ -12,6 +13,7 @@ import {Subscription, timer} from "rxjs/index";
 })
 export class PetMatchAddComponent implements OnInit,OnDestroy {
   serverUrl = "http://54.233.88.185";
+  //  serverUrl = "http://localhost:8000";
   year= new Date().getFullYear();
   range= [];
   years=[];

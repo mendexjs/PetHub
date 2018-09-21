@@ -46,14 +46,19 @@ img {
     overflow: hidden; }
 .tab-content img {
     width: 100%;
+    max-height: 400px;
+    max-width: 400px;
+    object-fit: cover;
+    object-position: center;
     -webkit-animation-name: opacity;
     animation-name: opacity;
     -webkit-animation-duration: .3s;
     animation-duration: .3s; }
 
 .card {
-    margin-top: 50px;
+    margin-top: 90px;
     background: #eee;
+    min-height: 550px;
     padding: 3em;
     line-height: 1.5em; }
 

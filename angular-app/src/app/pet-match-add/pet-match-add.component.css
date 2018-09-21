@@ -90,10 +90,17 @@ input, select, textarea{
     top: 25%;
     color: #fff;
     padding: 15px;
+    width: 400px;
 }
 @media screen and (min-width: 768px){
     .popUp{
-        left: calc(50% - 150px);
+        left: calc(50% - 200px);
+    }
+}
+@media screen and (min-width: 380px) and (max-width: 768px){
+    .popUp{
+        width: 350px;
+        left: calc(50% - 175px);
     }
 
 }

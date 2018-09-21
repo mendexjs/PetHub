@@ -11,6 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class PerfilComponent implements OnInit, OnDestroy {
     serverUrl = "http://54.233.88.185";
+    //serverUrl = "http://localhost:8000";
     id=null;
     user= [];
     private subscription: Subscription;

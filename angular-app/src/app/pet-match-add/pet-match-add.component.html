@@ -6,16 +6,18 @@
         <h4 id="addLabel">Adicionando Pet</h4>
     </div>
 
-    <div class="col-10 container" style="margin: 0 auto">
-        <div class="popUp col-9" *ngIf="popup">
+    <div class="col-10 container">
+
+        <div class="popUp col-10 col-sm-6" *ngIf="popup">
             <div class="modal-header">
                 <h5 class="modal-title">PetHub!</h5>
             </div>
             <div class="modal-body">
-                <p>{{msgPop}}</p>
+                <p>Pet cadastrado com sucesso!</p>
                 <button (click)="popup=false" class="btn btn-success">OK!</button>
             </div>
         </div>
+
         <h2 id="labelForm">Preencha o formulario! </h2>
         <hr>
 

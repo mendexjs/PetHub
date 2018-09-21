@@ -1,3 +1,4 @@
+
 <div class="container containerPets">
 
   <div class="row labelMyPets"> <h1>Seus Pets</h1></div>
@@ -10,17 +11,18 @@
   </div>
 
   <div class="containerFotos row">
-    <div class="card col-xl-4 col-lg-6 col-md-6 col-sm-12  img-pet" *ngFor="let pet of pets"  [routerLink]="['/petmatch/details-pet/' + pet.id]">
+    <div class="card col-xl-4 col-lg-6 col-md-6 col-sm-12  img-pet" *ngFor="let pet of pets">
         <i class="fas fa-trash-alt deletar" *ngIf="delete==1" (click)="open(content, pet.id, pet.nome_pet)"></i>
-        <img class="corte" src="{{serverUrl}}/imagem/{{pet.imagem}}">
+        <img class="corte"  [routerLink]="['/petmatch/details-pet/' + pet.id]" src="{{serverUrl}}/imagem/{{pet.imagem}}">
         <span class="nomePet">{{ pet.nome_pet }}</span>
     </div>
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12  ghost"></div>
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12  ghost"></div>
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12  ghost"></div>
   </div>
 
   <!-- ghost -->
-  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
-  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
-  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6  ghost"></div>
+
 </div>
 
 
@@ -39,4 +41,5 @@
     <button class="btn btn-success" (click)="deletar(deletarPet)">Confirmar</button>
   </div>
 </ng-template>
+
 <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius|Handlee" rel="stylesheet">

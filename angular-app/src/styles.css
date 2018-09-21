@@ -12,6 +12,7 @@ body {
     margin-bottom: 5px;
 }
 app-root{
+    min-height: 620px;
     order: 0;
     flex: 1 1 auto;
     align-self: auto;
@@ -24,6 +25,5 @@ app-root{
 }
 html{
     background: #43992c;
-
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#443992c', endColorstr='#217209', GradientType=0);
 }

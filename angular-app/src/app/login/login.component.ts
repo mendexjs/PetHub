@@ -10,7 +10,8 @@ import {timer} from "rxjs/internal/observable/timer";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  serverUrl = "http://54.233.88.185";
+  //serverUrl = "http://54.233.88.185";
+    serverUrl = "http://localhost:8000";
   popupLogin=false;
   popup=false;
   msgPop: String;
